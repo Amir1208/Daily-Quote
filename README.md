@@ -1,2 +1,2 @@
-# Daily-Quote
+# Daily Quote
 A quote messenger with Node.js
