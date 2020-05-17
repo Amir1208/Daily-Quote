@@ -1,6 +1,6 @@
 let twilio = require('twilio');
 let accountSid = YOUR ACCOUNTSID;
-let authToken = YOURAUTHTOKEN;
+let authToken = YOUR AUTHTOKEN;
 
 const client = twilio(accountSid, authToken);
 const fetch = require("node-fetch")
