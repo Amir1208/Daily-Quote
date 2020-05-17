@@ -1,25 +1,26 @@
-let twilio = require('twilio');
-let accountSid = YOUR ACCOUNTSID;
-let authToken = YOUR AUTHTOKEN;
+const twilio = require('twilio');
+const fetch = require("node-fetch");
+
+const accountSid = YOUR ACCOUNTSID;
+const authToken = YOUR AUTHTOKEN;
 
 const client = twilio(accountSid, authToken);
-const fetch = require("node-fetch")
 
 async function main() {
   // Choose a random number
   const min = 0;
   const max = 1643;
-  let ranNum = Math.floor(Math.random() * (max - min + 1)) + min;
+  let ran = Math.floor(Math.random() * (max - min + 1)) + min;
 
   // Call the api
   try {
     let response = await fetch("https://type.fit/api/quotes");
-    let result = await response.json();
+    let data = await response.json();
 
-    // retrun the quote
-    return result[ranNum];
+    // Retrun the quote
+    return data[ran];
   } catch(error) {
-    console.error(error);
+    console.log(error);
   }
 }
 
@@ -30,8 +31,9 @@ async function createMessage() {
 
     let body = `\n
     Quote of the day
-    “${result.text}”
-    \n- ${result.author}
+    ${result.text}
+
+    - ${result.author}
     `;
     let message = await client.messages.create({
       body: body,
@@ -40,7 +42,7 @@ async function createMessage() {
     });
     console.log('Success');
   } catch(error) {
-    console.error(error);
+    console.log(error);
   }
 }
 
